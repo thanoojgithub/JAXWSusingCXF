@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cxfjaxws.com/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="helloWorldImplService" targetNamespace="http://cxfjaxws.com/">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://cxfjaxws.com/" elementFormDefault="unqualified"
+			targetNamespace="http://cxfjaxws.com/" version="1.0">
+
+			<xs:element name="employeeRequest" type="tns:employeeRequest" />
+
+			<xs:element name="employeeResponse" type="tns:employeeResponse" />
+
+			<xs:complexType name="employeeRequest">
+				<xs:sequence>
+					<xs:element minOccurs="1" name="id" type="xs:integer" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="employeeResponse">
+				<xs:sequence>
+					<xs:element minOccurs="1" name="id" type="xs:integer" />
+					<xs:element minOccurs="0" name="firstname" type="xs:string" />
+					<xs:element minOccurs="0" name="lastname" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="employeeRequestMsg">
+		<wsdl:part element="tns:employeeRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="employeeResponseMsg">
+		<wsdl:part element="tns:employeeResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:portType name="helloWorldPortType">
+		<wsdl:operation name="getEmployee">
+			<wsdl:input message="tns:employeeRequestMsg" name="employeeRequestOp" />
+			<wsdl:output message="tns:employeeResponseMsg" name="employeeResponseOp" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="helloWorldImplServiceSoapBinding" type="tns:helloWorldPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getEmployee">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="employeeRequestOp">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="employeeResponseOp">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="helloWorldImplService">
+		<wsdl:port binding="tns:helloWorldImplServiceSoapBinding" name="helloWorldImplPort">
+			<soap:address location="http://localhost:8080/CXFJAXWS-Service-1.0/helloworld" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
