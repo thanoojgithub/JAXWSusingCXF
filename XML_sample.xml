@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<env:Envelope  xmlns:env="http://www.w3.org/2001/12/soap-envelope" >
+
+  <env:Header>
+    <jj:maxTime value="10000" xmlns:jj="http://jenkov.com"/>
+  </env:Header>
+
+  <env:Body>
+  </env:Body>
+<env:Fault>
+
+          <env:Code>
+            <env:Value>env:Sender</env:Value>
+          </env:Code>
+
+          <env:Reason>
+            <env:Text xml:lang="en-US">Processing error</env:Text>
+            <env:Text xml:lang="da">Processerings-fejl</env:Text>
+          </env:Reason>
+
+        </env:Fault>
+
+</env:Envelope>
